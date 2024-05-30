@@ -1,3 +1,4 @@
+import Feed from "@components/Feed"
 
 
 function Home() {
@@ -14,6 +15,7 @@ Discover & Share
 <p className="desc text-center">
     Promtopia is an open-Source AI prompting tool for modern world to discover , create and share creative prompts
 </p>
+<Feed />
   </section>
   )
 }

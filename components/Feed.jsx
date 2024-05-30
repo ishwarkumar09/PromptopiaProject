@@ -1,8 +1,16 @@
-import React from 'react'
+'use client'
+
+import PromptCard from "./PromptCard"
+import { useState,useEffect } from "react"
+
 
 function Feed() {
   return (
-    <div>Feed</div>
+   <section className="feed">
+    <form className="relative w-full flex-center">
+
+    </form>
+   </section>
   )
 }
 
