@@ -1,17 +1,72 @@
 'use client'
 
-import PromptCard from "./PromptCard"
-import { useState,useEffect } from "react"
+import { useState, useEffect } from "react";
+import PromptCard from "./PromptCard";
 
-
-function Feed() {
+const PromptCardList = ({ data, handleTagClick }) => {
   return (
-   <section className="feed">
-    <form className="relative w-full flex-center">
-
-    </form>
-   </section>
-  )
+    <div className="mt-16 prompt_layout">
+      {data.map((post) => (
+        <PromptCard 
+          key={post._id}
+          post={post}
+          handleTagClick={handleTagClick}
+        />
+      ))}
+    </div>
+  );
 }
 
-export default Feed
+function Feed() {
+  const [searchText, setSearchText] = useState("");
+  const [posts, setPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
+
+  const handleSearchChange = (e) => {
+    const text = e.target.value;
+    setSearchText(text);
+    if (text === "") {
+      setFilteredPosts(posts);
+    } else {
+      setFilteredPosts(
+        posts.filter(
+          (post) =>
+            post.creator.username.includes(text) || post.tag.includes(text)
+        )
+      );
+    }
+  };
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await fetch('/api/prompt');
+      const data = await response.json();
+      setPosts(data);
+      setFilteredPosts(data); // Set filteredPosts initially to all posts
+    };
+
+    fetchPosts();
+  }, []);
+
+  return (
+    <section className="feed">
+      <form className="relative w-full flex-center">
+        <input 
+          type="text"
+          placeholder="Search for tag or a username" 
+          value={searchText}
+          onChange={handleSearchChange}
+          required
+          className="search_input peer"
+        />
+      </form>
+
+      <PromptCardList
+        data={filteredPosts}
+        handleTagClick={() => {}}
+      />
+    </section>
+  );
+}
+
+export default Feed;
