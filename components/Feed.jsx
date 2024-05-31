@@ -37,6 +37,19 @@ function Feed() {
     }
   };
 
+  const handleTagClick = (tag)=>{
+    setSearchText(tag)
+    setFilteredPosts(
+      posts.filter(
+        (post) =>
+          post.creator.username.includes(tag) ||
+          post.tag.includes(tag) ||
+          post.prompt.includes(tag)
+      )
+    );
+  }
+
+
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await fetch('/api/prompt');
@@ -63,7 +76,7 @@ function Feed() {
 
       <PromptCardList
         data={filteredPosts}
-        handleTagClick={() => {}}
+        handleTagClick={handleTagClick}
       />
     </section>
   );

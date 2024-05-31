@@ -1,6 +1,6 @@
 import PromptCard from "./PromptCard";
 
-function Profile({ name, desc, data, handleEdit, handleDelete }) {
+function Profile({ name, desc, data, handleEdit, handleDelete,handleTagClick ,}) {
   return (
     <section className="w-full">
       <h1 className="head_text text-left">
@@ -14,6 +14,8 @@ function Profile({ name, desc, data, handleEdit, handleDelete }) {
           post={post}
           handleEdit={handleEdit}
           handleDelete={handleDelete}
+          handleTagClick={handleTagClick}
+        
         />
       ))}
     </div>
