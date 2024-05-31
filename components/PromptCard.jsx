@@ -64,7 +64,7 @@ function PromptCard({ post, handleTagClick, handleEdit, handleDelete }) {
             Edit
           </p>
           <p className="font-inter text-sm green_gradient cursor-pointer"
-          onClick={()=>handleDelete(post)}>
+          onClick={()=>handleDelete(post.Id)}>
              Delete
           </p>
         </div>
