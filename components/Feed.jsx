@@ -53,6 +53,10 @@ function Feed() {
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await fetch('/api/prompt');
+      
+      if (!response.ok) {
+        throw new Error("Data not found");
+      }
       const data = await response.json();
       setPosts(data);
       setFilteredPosts(data); // Set filteredPosts initially to all posts
