@@ -31,7 +31,7 @@ function Feed() {
       setFilteredPosts(
         posts.filter(
           (post) =>
-            post.creator.username.includes(text) || post.tag.includes(text)||post.prompt.includes(text)
+            post.creator?.username.includes(text) || post.tag.includes(text)||post.prompt.includes(text)
         )
       );
     }
